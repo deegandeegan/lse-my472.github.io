@@ -5,10 +5,17 @@ date: "10/8/2020"
 output: html_document
 ---
 
+```{r, include=FALSE}
+library(tidyverse)
+```
+
+
+
 You will use the `tidyverse` package and the dataset called `ip_and_unemployment.csv` that we used in lectures. Start with setting up your workspace:
 
 ```{r setup}
-
+ip_data <- read.csv("ip_and_unemployment.csv", sep = ",", stringsAsFactors = F)
+colnames(ip_data)[1] <- "Country"
 
 ```
     
@@ -16,7 +23,8 @@ What are the highest unemployment rates for France and Spain during the time of 
 
 ```{r q1}
 # Q1 --------------------------------------------------------------------------
-
+fs <- ip_data %>%
+  filter(Country == c("spain", "france"))
 
 ```
 
