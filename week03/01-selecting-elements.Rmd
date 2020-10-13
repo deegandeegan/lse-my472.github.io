@@ -64,7 +64,7 @@ for (i in 1:length(relevant_nodes)) {
 Similarly, we can scrape the content from only the second division container. We had given it a class name of "division-two", so in CSS selector notation it is called ".division-two":
 
 ```{r}
-relevant_nodes <- html_nodes(html, css = ".division-two")
+relevant_nodes <- html_nodes(html, css = "body > div.division-two > p:nth-child(2)")
 length(relevant_nodes)
 ```
 

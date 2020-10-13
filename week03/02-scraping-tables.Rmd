@@ -72,7 +72,7 @@ lines(social_security_data$year, social_security_data$female, col = 'blue')
 legend(x = 'topleft', col = c("red", "blue"), lty = 1, legend = c("male", "female"))
 ```
 
-Using ggplot2 first requires the data to be in a tidy long format:
+**Using ggplot2 first requires the data to be in a tidy long format:*
 
 ```{r}
 
@@ -82,7 +82,7 @@ social_security_data_long <- pivot_longer(data = social_security_data[, 1:3],
 
 # Creating the plot
 ggplot(social_security_data_long) +
-  aes(x = year, y = individuals, group = gender, colour = gender) + geom_line()
+  aes(x = year, y = individuals, group = gender, colour = gender) + geom_line() + theme_classic()
 ```
 
 ### Scraping web data in table format: A more advanced example
@@ -108,7 +108,7 @@ Now that we know what we're looking for, let's use `html_nodes()` to identify al
 
 
 ```{r}
-tables_raw <- html_nodes(html, css = "table.wikitable:nth-child(18)")
+tables_raw <- html_nodes(html, css = "table:nth-child(18)")
 length(tables_raw)
 ```
 
