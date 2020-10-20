@@ -238,5 +238,17 @@ abs_numbers
 
 
 
+```{r}
+top_artist_genre <- list()
+for (every_genre in billboard_df$genre) {
+  artist_genre <- billboard_df %>%
+    filter(genre == every_genre) %>%
+    count(artist, genre, name = "Freq") %>%
+    filter(Freq == max(Freq))
+  top_artist_genre[[every_genre]] <- artist_genre
+}
+
+print(top_artist_genre)
+```
 
 
