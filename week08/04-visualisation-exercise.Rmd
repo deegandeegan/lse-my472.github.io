@@ -42,12 +42,25 @@ Your code here:
 ```{r}
 
 # Transform date column to datetime (lubridate package!)
+unemp$date <- as_date(unemp$date)
 
-
+yrng <- range(unemp$unemp, na.rm = T)
+xrng <- range(unemp$date, na.rm = T)
 
 # Create a line-plot with unemployment and date
+p1 <- ggplot(unemp) +
+  geom_line(aes(x = date, y = unemp))
 
 
+p2 <- p1 +
+  geom_rect(data = pres, 
+            aes(xmin = start, xmax= end,fill = party),
+            ymin = yrng[1]-0.05, ymax = yrng[2]+0.05,
+            alpha = 1/5) +
+  scale_fill_manual(values = c("blue", "red"), 0.2) +
+  scale_x_date(limits = xrng, expand = c(0,0)) +
+  geom_text(pres,
+            aes(start, yrng[2], label = name))
 
 # Fix axes and add colored rectangles
 
@@ -58,7 +71,9 @@ Your code here:
 
 
 # Adding lines to separate presidencies
-
+p3 <- p2 +
+  geom_vline(aes(colour="black", linetype = "longdash")) +
+  geom_segment(pres, aes(x = start, y = y1, xend = end, yend = y2, colour = "segment")
 
 
 # Finally, moving legend and removing x axis title
@@ -69,6 +84,8 @@ Your code here:
 
 
 
+
+p2
 ```
 
 
